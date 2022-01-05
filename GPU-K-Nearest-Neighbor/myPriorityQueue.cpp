@@ -12,22 +12,22 @@ void PriorityQueue<K>::siftDown(int position) {
 				// this is a valid comparison index
 				if (this->comparisonType) {
 					// then children should be larger than the parent
-					(this->heapArray[leftChild].second.value < heapArray[position].second.value) ? bestIndex = leftChild : ;
+					(this->heapArray[leftChild].second < heapArray[position].second) ? bestIndex = leftChild : ;
 				}
 				else {
 					// then children should be smaller than the parent
-					(heapArray[leftChild].second.value > heapArray[position].second.value) ? bestIndex = leftChild : ;
+					(heapArray[leftChild].second > heapArray[position].second) ? bestIndex = leftChild : ;
 				}
 			}
 			if (rightChild <= this->getSize() - 1) {
 				// this is a valid comparison index
 				if (this->comparisonType) {
 					// then children should be larger than the parent
-					(heapArray[rightChild].second.value < heapArray[position].second.value) ? bestIndex = rightChild : ;
+					(heapArray[rightChild].second< heapArray[position].second) ? bestIndex = rightChild : ;
 				}
 				else {
 					// then children should be smaller than the parent
-					(heapArray[rightChild].second.value > heapArray[position].second.value) ? bestIndex = rightChild : ;
+					(heapArray[rightChild].second> heapArray[position].second) ? bestIndex = rightChild : ;
 				}
 			}
 			if (bestIndex != position) {
@@ -47,7 +47,7 @@ void PriorityQueue<K>::siftUp(int position) {
 	int parent = (position+1) / 2;
 	if (this->comparisonType) {
 		// then the parent should be <= the child
-		if (this->heapArray[parent].second.value > this.heapArray[position].second.value) {
+		if (this->heapArray[parent].second > this.heapArray[position].second) {
 			// need to swap and continue sift up operation
 			pair<void*, K> temp = this->heapArray[position];
 			this->heapArray[position] = this->heapArray[parent];
@@ -57,7 +57,7 @@ void PriorityQueue<K>::siftUp(int position) {
 	}
 	else {
 		// then the parent should be >= the child
-		if (this->heapArray[parent].second.value < this.heapArray[position].second.value) {
+		if (this->heapArray[parent].second < this.heapArray[position].second) {
 			// need to swap and continue sift up operation
 			pair<void*, K> temp = this->heapArray[position];
 			this->heapArray[position] = this->heapArray[parent];
