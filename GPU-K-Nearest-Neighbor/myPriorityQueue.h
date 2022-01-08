@@ -5,14 +5,14 @@
 using namespace std;
 
 // K is the class for the key
-// elements are void*  (these are not relevant to the priority queue until data extraction, so I will keep them as void*, we do not want to copy tuple objects anyway)
+// elements are void**  (these are not relevant to the priority queue until data extraction, so I will keep them as void**, we do not want to copy tuple objects anyway)
 template<typename K>
 class PriorityQueue {
 	public:
 		// our heaps will have a maximum size (for bounding knn)
 		int maxSize;
 		// vector of tuple representing the element and a double key
-		*vector< pair<void*, K>> heapArray;
+		*vector< pair<void**, K>> heapArray;
 		// need to specify whether this is a maxHeap or a minHeap
 		bool comparisonType;
 		/*Function declarations*/
@@ -22,7 +22,7 @@ class PriorityQueue {
 			this->maxSize = 0;
 			this->comparisonType = comparisonType;
 			//smart pointer for the heap vector
-			this->heapArray = ptr(new vector<pair<void*, K>>());
+			this->heapArray = ptr(new vector<pair<void**, K>>());
 		}
 		
 		// getting the size of the heapArray currently
@@ -42,15 +42,15 @@ class PriorityQueue {
 		void siftUp(int position);
 
 		// peeking the top element
-		pair<void*, K> peek();
+		pair<void**, K> peek();
 
 		// extracting the top element
-		pair<void*, K> extractTop();
+		pair<void**, K> extractTop();
 
 		// inserting elements
-		void insertElement(pair<void*, K> element);
+		void insertElement(pair<void**, K> element);
 
 		// heapify operation given a vector of tuples representing the data and their key values
-		void heapify(vector<pair<void*, K>> elementKeyArray);
+		void heapify(vector<pair<void**, K>> elementKeyArray);
 
 };

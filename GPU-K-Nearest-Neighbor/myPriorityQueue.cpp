@@ -32,7 +32,7 @@ void PriorityQueue<K>::siftDown(int position) {
 			}
 			if (bestIndex != position) {
 				// then we have to continue the siftDown operation after swapping
-				pair<void*, K> temp = this->heapArray[position];;
+				pair<void**, K> temp = this->heapArray[position];;
 				this->heapArray[position] = this->heapArray[bestIndex];
 				this->heapArray[bestIndex] = temp;
 				this->siftDown(bestIndex);
@@ -49,7 +49,7 @@ void PriorityQueue<K>::siftUp(int position) {
 		// then the parent should be <= the child
 		if (this->heapArray[parent].second > this.heapArray[position].second) {
 			// need to swap and continue sift up operation
-			pair<void*, K> temp = this->heapArray[position];
+			pair<void**, K> temp = this->heapArray[position];
 			this->heapArray[position] = this->heapArray[parent];
 			this->heapArray[parent] = temp;
 			this->siftUp(parent);
@@ -59,7 +59,7 @@ void PriorityQueue<K>::siftUp(int position) {
 		// then the parent should be >= the child
 		if (this->heapArray[parent].second < this.heapArray[position].second) {
 			// need to swap and continue sift up operation
-			pair<void*, K> temp = this->heapArray[position];
+			pair<void**, K> temp = this->heapArray[position];
 			this->heapArray[position] = this->heapArray[parent];
 			this->heapArray[parent] = temp;
 			this->siftUp(parent);
@@ -69,16 +69,16 @@ void PriorityQueue<K>::siftUp(int position) {
 
 // peeking the top element
 template <typename K>
-pair<void*, K> PriorityQueue<K>::peek() {
+pair<void**, K> PriorityQueue<K>::peek() {
 	if (this->getSize() == 0) return NULL;
 	return this->heapArray[0];
 }
 
 // extracting the top element
 template<typename K>
-pair<void*, K> PriorityQueue<K>::extractTop() {
+pair<void**, K> PriorityQueue<K>::extractTop() {
 	if (this->getSize() == 0) return NULL;
-	pair < void*, K> top = this->heapArray[0];
+	pair < void**, K> top = this->heapArray[0];
 	// swapping top value with a leaf value, if possible
 	if (this->getSize() == 1) {
 		this->heapArray.clear()
@@ -96,14 +96,14 @@ pair<void*, K> PriorityQueue<K>::extractTop() {
 
 // inserting elements
 template<typename K>
-void PriorityQueue<K>::insertElement(pair<void*,K> element) {
+void PriorityQueue<K>::insertElement(pair<void**,K> element) {
 	this->heapArray.push_back(element);
 	this->siftUp(this->heapArray.size() - 1);
 }
 
 // heapify operation given a vector of tuples representing the data and their key values
 template<typename K>
-void PriorityQueue<K>::heapify(vector<pair<void*,K>> elementKeyArray) {
+void PriorityQueue<K>::heapify(vector<pair<void**,K>> elementKeyArray) {
 	// we keep inserting elements as the last element and sifting down
 	for (int i = 0;i < elementKeyArray.size();i++) {
 		this->heapArray.push_back(element);
