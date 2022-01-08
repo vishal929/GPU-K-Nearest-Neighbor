@@ -12,12 +12,12 @@ using namespace std;
 // dataset contains pointers to the elements in the dataset
 // returns a pointer to the max-heap priority queue containing the k closest neighbors from the dataset to the element
 template <class K>
-PriorityQueue<K>* naiveKNN(int k, void* element, K (*distanceFunction)(void* elementOne, void* elementTwo), vector<void*> &dataset) {
+PriorityQueue<K>* naiveKNN(int k, void** element, K (*distanceFunction)(void** elementOne, void** elementTwo), vector<void**> &dataset) {
 	// creating our priority queue as a smart pointer
 	PriorityQueue<K>* maxHeap = new PriorityQueue<K>(k, true);
 	// iterating through the dataset and performing comparisons
 	for (int i = 0;i < dataset.size();i++) {
-		void* elementToCompare = dataset[i];
+		void** elementToCompare = dataset[i];
 		K distance = distanceFunction(element, elementToCompare);
 		if (maxHeap->getSize() < k) {
 			maxHeap->insertElement(make_pair(elementToCompare, distance));
@@ -34,3 +34,11 @@ PriorityQueue<K>* naiveKNN(int k, void* element, K (*distanceFunction)(void* ele
 	// returning the priority queue object with the nearest neighbors
 	return maxHeap;
 }
+
+// sometimes our dataset will be very extensive, so we might have to batch knn results, below is the naive implementation for batched knn
+// this will be generic in the definition, but I will probably assume a maximum memory of 6GB in my tests
+template <class K>
+PriorityQueue<K>* batchedNaiveKNN(int k, void** element, K(*distanceFunction)(void** elementOne, void** elementTwo), vector<void**>& dataset) {
+
+}
+
