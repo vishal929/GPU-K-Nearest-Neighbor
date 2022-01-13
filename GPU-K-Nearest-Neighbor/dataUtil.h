@@ -21,3 +21,7 @@ void freeIrisData(void*** dataArray, int numElements);
 
 // defined distance function for iris data
 double irisDistanceFunction(void** elementOne, void** elementTwo);
+
+// the iris features are not rescaled (normalized) because they dont need to be
+// this will quickly change as we consider the larger datasets with more varied features
+// we will probably need to do mean/standard deviation based scaling for the larger datasets

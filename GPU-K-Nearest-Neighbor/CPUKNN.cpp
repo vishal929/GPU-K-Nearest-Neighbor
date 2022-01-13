@@ -35,6 +35,13 @@ PriorityQueue<K>* naiveKNN(int k, void** element, K (*distanceFunction)(void** e
 	return maxHeap;
 }
 
+// an idea I had here where we can split up the dataset into n subsets and run knn on them, and them compile the results after parallel processing
+// hope is that parallelism will benefit runtime, even if we do have extra comparisons that one pass does not have (1 thread naive version)
+template<class K>
+PriorityQueue<K>* parallelNaiveKNN(int k, void** element, K (*distanceFunction)(void** elementOne, void** elementTwo), vector<void**> &dataset) {
+
+}
+
 // sometimes our dataset will be very extensive, so we might have to batch knn results, below is the naive implementation for batched knn
 // this will be generic in the definition, but I will probably assume a maximum memory of 6GB in my tests
 template <class K>
